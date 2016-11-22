@@ -10,6 +10,7 @@ import com.retrofitpoc.R;
 import com.retrofitpoc.adapter.FlowerAdapter;
 import com.retrofitpoc.interfaces.FlowerApi;
 import com.retrofitpoc.model.FlowerModel;
+import com.retrofitpoc.network.CommunicationManager;
 
 import java.util.List;
 
@@ -43,13 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void callWebservice() {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(FLOWER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        FlowerApi service = retrofit.create(FlowerApi.class);
 
-         Call<List<FlowerModel>> repos = service.getFlowers();
+        Call<List<FlowerModel>> repos = CommunicationManager.getInstanceGetRequest().getFlowers();
         repos.enqueue(new Callback<List<FlowerModel>>() {
             @Override
             public void onResponse(Call<List<FlowerModel>> call, Response<List<FlowerModel>> response) {

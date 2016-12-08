@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.retrofitpoc.R;
 import com.retrofitpoc.model.FlowerModel;
 import com.squareup.picasso.Picasso;
@@ -45,10 +46,11 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.ViewHolder
         holder.mTvPrice.setText(String.valueOf(dto.get(position).getPrice()));
         holder.mTvCategory.setText(dto.get(position).getCategory());
         holder.mTvInstructions.setText(dto.get(position).getInstructions());
-        String url="http://service.hanselandpetal.com/photos/"+dto.get(position).getPhoto();
-        Picasso.with(ctx)
-                .load(url)
-                .into(holder.mIvImage);
+        String url = "http://service.hanselandpetal.com/photos/" + dto.get(position).getPhoto();
+      //  String url = "https://api.learn2crack.com/android/images/kitkat.png";
+
+        Glide.with(ctx).load(url).into(holder.mIvImage);
+
     }
 
     @Override
@@ -71,7 +73,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.ViewHolder
             mTvCategory = (TextView) itemView.findViewById(R.id.tv_category_value);
             mTvInstructions = (TextView) itemView.findViewById(R.id.tv_instruction);
             mCardView = (CardView) itemView.findViewById(R.id.card_view);
-            mIvImage = (ImageView) itemView.findViewById(R.id.iv_image);
+            mIvImage = (ImageView) itemView.findViewById(R.id.iv_title);
         }
 
 
